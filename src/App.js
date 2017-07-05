@@ -18,7 +18,10 @@ class App extends Component {
 
 				<Clock />
 
-				<Toggle />
+				<Toggle target="#light" />
+				<div >
+					<span id="light">Toggle turns me On/Off</span>
+				</div>
 
 			</div>
 		);

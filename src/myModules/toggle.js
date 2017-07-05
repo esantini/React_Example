@@ -16,10 +16,17 @@ class Toggle extends React.Component {
 		// console.log('hmmm'); // <- Searched for this in bundle.js
 		// After checking bundle.js: The experimental syntax puts the handleClick inside the constructor.
 		
+		let newVal = !this.state.isToggleOn;
 		this.setState(prevState => ({
-			isToggleOn: !prevState.isToggleOn
+			isToggleOn: newVal // !prevState.isToggleOn
 		}));
-
+		if(this.props.target) {
+			document.querySelectorAll(this.props.target)
+				.forEach(function(element) {
+					element.classList.toggle('toggleOn', newVal);
+					element.classList.toggle('toggleOff', !newVal);
+				});
+		}
 	}
 
 	render() {
