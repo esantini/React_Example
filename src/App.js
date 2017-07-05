@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Clock from './myModules/clock';
+import Toggle from './myModules/toggle';
 
 class App extends Component {
 	render() {
@@ -16,6 +17,8 @@ class App extends Component {
 				<Welcome name="from App.js" />
 
 				<Clock />
+
+				<Toggle />
 
 			</div>
 		);
