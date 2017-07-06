@@ -14,7 +14,7 @@ class App extends Component {
 					<h2>Welcome to React</h2>
 				</div>
 
-				<Welcome name="from App.js" />
+				<Welcome1 name="from App.js" />
 
 				<Clock />
 
@@ -28,7 +28,17 @@ class App extends Component {
 	}
 }
 
-class Welcome extends React.Component {
+
+/*
+	As they are now Welcome1 & Welcome2 are equivalent from React's point of view.
+	BUT: classes lets us use additional features such as local state and lifecycle hooks.
+*/
+// eslint-disable-next-line
+function Welcome1(props) {
+	return <h1>Hello, {props.name} </h1>;
+}
+// eslint-disable-next-line
+class Welcome2 extends React.Component {
 	render() {
 		return <h1>Hello, {this.props.name}</h1>;
 	}
