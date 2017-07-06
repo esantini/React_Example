@@ -4,6 +4,7 @@ import './App.css';
 
 import Clock from './myModules/clock';
 import Toggle from './myModules/toggle';
+import GroceryList from './myModules/groceryList';
 
 class App extends Component {
 	render() {
@@ -23,6 +24,7 @@ class App extends Component {
 					<span id="light">Toggle turns me On/Off</span>
 				</div>
 
+				<GroceryList />
 			</div>
 		);
 	}
