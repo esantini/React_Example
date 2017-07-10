@@ -5,6 +5,7 @@ import './App.css';
 import Clock from './myModules/clock';
 import Toggle from './myModules/toggle';
 import GroceryList from './myModules/groceryList';
+import Kanban from './myModules/kanban/kanban';
 
 class App extends Component {
 	render() {
@@ -14,6 +15,8 @@ class App extends Component {
 					<img src={logo} className="App-logo" alt="logo" />
 					<h2>Welcome to React</h2>
 				</div>
+
+				<Kanban />
 
 				<Welcome1 name="from App.js" />
 
