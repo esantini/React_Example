@@ -17,6 +17,10 @@ class GroceryList extends Component {
 
 // Child Component
 class ListItem extends Component {
+	props: {
+		quantity: string,
+		children: any
+	}
 	render() {
 		return(
 			<li>

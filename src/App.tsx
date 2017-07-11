@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg'; // Use file-loader.
 import './App.css';
 
 import Clock from './myModules/clock';
@@ -12,18 +12,18 @@ class App extends Component {
 		return (
 			<div className="App">
 				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
+					{/*<img src={logo} className="App-logo" alt="logo" />*/}
 					<h2>Welcome to React</h2>
 				</div>
 
 				<Kanban />
 
-				<Welcome1 name="from App.js" />
+				<Welcome1 name="from App.tsx" />
 
 				<Clock />
 
-				<Toggle target="#light" />
-				<div >
+				<Toggle target="#light" /> 
+				<div>
 					<span id="light">Toggle turns me On/Off</span>
 				</div>
 
@@ -39,13 +39,13 @@ class App extends Component {
 	BUT: classes lets us use additional features such as local state and lifecycle hooks.
 */
 // eslint-disable-next-line
-function Welcome1(props) {
+function Welcome1(props: any) {
 	return <h1>Hello, {props.name} </h1>;
 }
 // eslint-disable-next-line
 class Welcome2 extends React.Component {
 	render() {
-		return <h1>Hello, {this.props.name}</h1>;
+		return <h1>Hello, { (this.props as any).name }</h1>;
 	}
 }
 

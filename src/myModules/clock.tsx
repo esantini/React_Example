@@ -1,7 +1,13 @@
 import React from 'react';
 
 class Clock extends React.Component {
-	constructor(props) {
+	 /** Id of the interval to clear it when the clock is unmounted. */
+	timerId: number;
+	state: {
+		date: Date
+	}
+	
+	constructor(props: {}) {
 		super(props);
 		this.state = { date: new Date() };
 	}
