@@ -1,7 +1,17 @@
 import React from 'react';
 
 class Toggle extends React.Component {
-	constructor(props) {
+	props: {
+		/**
+		 * Query for elements with the "target" string & apply the className: "toggleOn / toggleOff"
+		 */
+		target?: string
+	}
+	state: {
+		isToggleOn: boolean 
+	}
+	
+	constructor(props: { target?: string }) {
 		super(props);
 		this.state = { isToggleOn: false };
 
