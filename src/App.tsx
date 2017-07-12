@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg'; // Use file-loader.
-import './App.css';
+// import './App.css';
 
 import Clock from './myModules/clock';
 import Toggle from './myModules/toggle';
