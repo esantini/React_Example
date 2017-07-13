@@ -19,6 +19,7 @@
   "scripts": {
     "start": "webpack --config config/webpack.config.js",
     "build": "TODO-scripts build",
-    "webpack": "webpack --config config/webpack.config.js"
+    "webpack": "webpack --config config/webpack.config.js",
+    "test": "tslint -c tslint.json 'src/**/*.{ts,tsx}' --exclude 'src/**/*.d.ts'"
   }
 }
