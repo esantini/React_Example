@@ -1,9 +1,9 @@
 var path = require('path'),
-	webpack = require('webpack');
+	webpack = require('webpack'),
 	WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
-	entry: './src/app.tsx',
+	entry: './src/index.tsx',
 	output: {
 		filename: '[name].js',
 		publicPath: 'build',
@@ -31,10 +31,9 @@ module.exports = {
 			}
 		],
 		loaders: [
-			// {
-			// 	test: /\.less$/,
-			// 	loader: 'file-loader'
-			// }
+			{
+				loader: 'file-loader'
+			}
 		]
 	},
 	plugins: [
