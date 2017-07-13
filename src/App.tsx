@@ -7,6 +7,8 @@ import Toggle from './myModules/toggle';
 import GroceryList from './myModules/groceryList';
 import Kanban from './myModules/kanban/kanban';
 
+import 'file-loader?name=[name].[ext]!./app.css';
+
 class App extends Component {
 	render() {
 		return (
