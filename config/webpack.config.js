@@ -9,6 +9,13 @@ module.exports = {
 		publicPath: 'build',
 		path: path.resolve('build')
 	},
+
+	devServer: {
+		port: 3000,
+		historyApiFallback: true,
+		inline: true
+	},
+
 	devtool: 'source-map',
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
