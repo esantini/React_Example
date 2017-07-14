@@ -1,14 +1,14 @@
-import React from 'react';
-// import Card from './card';
+import React from "react";
 
 class List extends React.Component {
-	props: {
+	public props: {
 		id: string,
 		title: string,
-		cards: {}
-	}
-	render() {
-		return <h3>I'm a List</h3>
+		cards: {},
+	};
+
+	public render() {
+		return <h3>I'm a List</h3>;
 	}
 }
 

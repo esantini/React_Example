@@ -1,33 +1,31 @@
-import React from 'react';
+import React from "react";
 
 class Clock extends React.Component {
-	 /** Id of the interval to clear it when the clock is unmounted. */
-	timerId: number;
-	state: {
-		date: Date
-	}
-	
+
+	public state: {
+		date: Date,
+	};
+
+	/** Id of the interval to clear it when the clock is unmounted. */
+	private timerId: number;
+
 	constructor(props: {}) {
 		super(props);
 		this.state = { date: new Date() };
 	}
 
-	tick() {
-		this.setState({ date: new Date() });
-	}
-
-	componentDidMount() {
+	public componentDidMount() {
 		this.timerId = setInterval(
 			() => this.tick(),
-			1000
+			1000,
 		);
 	}
-	componentWillUnmount() {
+
+	public componentWillUnmount() {
 		clearInterval(this.timerId);
-		console.log('unmounted.');
 	}
 
-	render() {
+	public render() {
 		return (
 			<div>
 				<h1>Hello Clock:</h1>
@@ -35,6 +33,11 @@ class Clock extends React.Component {
 			</div>
 		);
 	}
+
+	private tick() {
+		this.setState({ date: new Date() });
+	}
+
 }
 
 export default Clock;

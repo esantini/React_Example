@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class CheckList extends Component {
-	props: {
-		tasks: kanban.Task[]
-	}
-	render() {
-		let tasks = this.props.tasks.map((task) => (
+
+	public props: {
+		tasks: kanban.Task[],
+	};
+
+	public render() {
+		const tasks = this.props.tasks.map((task) => (
 			<li className="checklist__task" >
 				<input type="checkbox" defaultChecked={task.done} />
 				{task.name}
