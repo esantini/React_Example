@@ -1,12 +1,22 @@
 declare namespace kanban {
 	interface List {
-
+		id: string,
+		title: string,
+		cards: kanban.Card[]
 	}
 	interface Card {
-		status: string
+		id: string,
+		title: string,
+		description: string,
+		tasks: Task[],
+		status?: string
 	}
 	interface Task {
 		name: string,
 		done: boolean
+	}
+	interface CheckList {
+		cardId: string,
+		tasks: kanban.Task[]
 	}
 }

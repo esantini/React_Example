@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 
 class CheckList extends Component {
-
-	public props: {
-		tasks: kanban.Task[],
-	};
+	public props: kanban.CheckList;
 
 	public render() {
 		const tasks = this.props.tasks.map((task) => (
-			<li className="checklist__task" >
+			<li className="checklist__task" key={ task.name } >
 				<input type="checkbox" defaultChecked={task.done} />
 				{task.name}
 				<a href="#" className="checklist__task--remove" />
@@ -16,7 +13,7 @@ class CheckList extends Component {
 		));
 		return (
 			<div className="checklist">
-				<ul>{tasks}</ul>
+				<ul key={ this.props.cardId }>{tasks}</ul>
 			</div>
 		);
 	}

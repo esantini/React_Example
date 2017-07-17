@@ -1,14 +1,27 @@
 import React from "react";
+import Card from "./card";
 
 class List extends React.Component {
-	public props: {
-		id: string,
-		title: string,
-		cards: {},
-	};
+	public props: kanban.List;
 
 	public render() {
-		return <h3>I'm a List</h3>;
+		const cards = this.props.cards.map(
+			(card) => {
+				return (
+					<Card id={ card.id }
+						key={ card.id }
+						title={ card.title }
+						description = {card.description }
+						tasks={ card.tasks } />
+					);
+			});
+
+		return (
+			<div className="list">
+				<h1>{ this.props.title }</h1>
+				{ cards }
+			</div>
+		);
 	}
 }
 
