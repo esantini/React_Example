@@ -15,7 +15,7 @@ class Kanban extends React.Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
-			cards: [],
+			cards: this.props.cards,
 		};
 	}
 
