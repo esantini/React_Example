@@ -13,6 +13,7 @@ declare namespace kanban {
 		status?: string
 	}
 	interface Task {
+		id: number,
 		name: string,
 		done: boolean
 	}
