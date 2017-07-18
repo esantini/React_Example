@@ -29,8 +29,20 @@ class Card extends React.Component {
 			);
 		}
 
+		let sideColor: React.CSSProperties = {
+			position: "absolute",
+			zIndex: -1,
+			top: 0,
+			botom: 0,
+			left: 0,
+			width: 7,
+			height: "100%",
+			backgroundColor: this.props.color
+		}
+
 		return (
 			<div className="card">
+				<div style={ sideColor } />
 				<div className={ this.state.showDetails ? "card__title card__title--is-open" : "card__title"}
 						onClick={ this.toggleDetails.bind(this) }>
 					{this.props.title}

@@ -8,6 +8,7 @@ declare namespace kanban {
 		id: string,
 		title: string,
 		description: string,
+		color: string,
 		tasks: Task[],
 		status?: string
 	}
