@@ -1,7 +1,15 @@
+import PropTypes from "prop-types";
 import React from "react";
+
 import Card from "./card";
 
 class List extends React.Component {
+
+	public static propTypes = {
+		title: PropTypes.string.isRequired,
+		cards: PropTypes.arrayOf(PropTypes.object),
+	};
+
 	public props: kanban.List;
 
 	public render() {

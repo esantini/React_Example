@@ -1,8 +1,14 @@
+import PropTypes from "prop-types";
 import React from "react";
+
 import data from "./data.json";
 import List from "./list";
 
 class Kanban extends React.Component {
+
+	public static propTypes = {
+		cards: PropTypes.arrayOf(PropTypes.object),
+	};
 
 	public render() {
 		return (

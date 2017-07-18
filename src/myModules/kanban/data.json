@@ -22,7 +22,7 @@
 		},
 		{
 			"id": 3,
-			"title": "Card Three title",
+			"title": "Card Three title is just a long title to trigger PropTypes",
 			"description": "Card detailed description.",
 			"status": "done",
 			"tasks": []
