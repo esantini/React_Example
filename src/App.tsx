@@ -3,9 +3,12 @@ import React, { Component } from "react";
 // import './App.css';
 
 import Clock from "./myModules/clock";
+import KanbanOnline from "./myModules/kanbanOnline";
 import GroceryList from "./myModules/groceryList";
 import Kanban from "./myModules/kanban/kanban";
 import Toggle from "./myModules/toggle";
+
+import myKanbanData from "./myModules/kanban/data.json";
 
 class App extends Component {
 	public render() {
@@ -16,7 +19,13 @@ class App extends Component {
 					<h2>Welcome to React</h2>
 				</div>
 
-				<Kanban />
+				<Kanban cards={ myKanbanData.cardsList } />
+
+				<div style={{ border: "1px solid black", margin: "20px", backgroundColor: "beige" }}>
+					<h3>This gets the Kanban Data from a CORS requests.</h3>
+					<h4>CORS: Cross Origin Resource Sharing</h4>
+					<KanbanOnline />
+				</div>
 
 				<Welcome1 name="from App.tsx" />
 

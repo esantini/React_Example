@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import data from "./data.json";
 import List from "./list";
 
 class Kanban extends React.Component {
@@ -10,17 +9,21 @@ class Kanban extends React.Component {
 		cards: PropTypes.arrayOf(PropTypes.object),
 	};
 
+	public props: {
+		cards: kanban.Card[],
+	};
+
 	public render() {
 		return (
 			<div className="kanban" style={{ border: "1px solid black", backgroundColor: "#eee", margin: "10px" }}>
 				<List id="todo" title="To Do" cards = {
-						data.cardsList.filter( (card: kanban.Card) => card.status === "todo" )
-					} />
+						this.props.cards.filter( (card: kanban.Card) => card.status === "todo" )
+					} /> 
 				<List id="in-progress" title="In Progress" cards = {
-						data.cardsList.filter( (card: kanban.Card) => card.status === "in-progress" )
+						this.props.cards.filter( (card: kanban.Card) => card.status === "in-progress" )
 					} />
 				<List id="done" title="Done" cards = {
-						data.cardsList.filter( (card: kanban.Card) => card.status === "done" )
+						this.props.cards.filter( (card: kanban.Card) => card.status === "done" )
 					} />
 			</div>
 		);
