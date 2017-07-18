@@ -1,6 +1,7 @@
+import marked from "marked";
 import React from "react";
+
 import CheckList from "./checkList";
-import marked from 'marked';
 
 class Card extends React.Component {
 
@@ -23,13 +24,13 @@ class Card extends React.Component {
 		if (this.state.showDetails) {
 			cardDetails = (
 				<div className="card__details">
-					<span dangerouslySetInnerHTML={{__html:marked(this.props.description)}} />
+					<span dangerouslySetInnerHTML={{__html: marked(this.props.description)}} />
 					<CheckList cardId={this.props.id} tasks={this.props.tasks} />
 				</div>
 			);
 		}
 
-		let sideColor: React.CSSProperties = {
+		const sideColor: React.CSSProperties = {
 			position: "absolute",
 			zIndex: -1,
 			top: 0,
@@ -37,8 +38,8 @@ class Card extends React.Component {
 			left: 0,
 			width: 7,
 			height: "100%",
-			backgroundColor: this.props.color
-		}
+			backgroundColor: this.props.color,
+		};
 
 		return (
 			<div className="card">
