@@ -7,6 +7,8 @@ import "file-loader?name=[name].[ext]!../public/manifest.json";
 
 import "file-loader?name=[name].[ext]!./index.css";
 
+import "file-loader?name=[name].[ext]!./app.css";
+
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
