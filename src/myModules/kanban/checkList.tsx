@@ -13,7 +13,10 @@ class CheckList extends Component {
 		));
 		return (
 			<div className="checklist">
-				<ul key={ this.props.cardId }>{tasks}</ul>
+				<ul>{tasks}</ul>
+				<input type="text"
+						className="checklist--add-task"
+						placeholder="Type then hit Enter to add a task" />
 			</div>
 		);
 	}
