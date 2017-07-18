@@ -1,6 +1,6 @@
 import React from "react";
 
-import Kanban from "./kanban/kanban";
+import Board from "./kanban/board";
 
 import "whatwg-fetch";
 
@@ -39,7 +39,7 @@ class KanbanOnline extends React.Component {
 	public render() {
 		return (
 			<div >
-				<Kanban cards = { this.state.cards } />
+				<Board cards = { this.state.cards } />
 			</div>	
 		);
 	}
