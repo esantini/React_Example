@@ -21,19 +21,19 @@ class Kanban extends React.Component {
 
 	public componentDidMount() { }
 
+	public render() {
+		return (
+			<div >
+				<Board cards = { this.state.cards } />
+			</div>
+		);
+	}
+
 	protected addTask(cardId: number, taskName: string) { }
 
 	protected deleteTask(cardId: number, taskId: number, taskIndex: number) { }
 
 	protected toggleTask(cardId: number, taskId: number, taskIndex: number) { }
-
-	public render() {
-		return (
-			<div >
-				<Board cards = { this.state.cards } />
-			</div>	
-		);
-	}
 
 }
 

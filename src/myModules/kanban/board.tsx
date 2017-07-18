@@ -18,7 +18,7 @@ class Board extends React.Component {
 			<div className="kanban" style={{ border: "1px solid black", backgroundColor: "#eee", margin: "10px" }}>
 				<List id="todo" title="To Do" cards = {
 						this.props.cards.filter( (card: kanban.Card) => card.status === "todo" )
-					} /> 
+					} />
 				<List id="in-progress" title="In Progress" cards = {
 						this.props.cards.filter( (card: kanban.Card) => card.status === "in-progress" )
 					} />

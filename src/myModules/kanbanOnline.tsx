@@ -40,7 +40,7 @@ class KanbanOnline extends React.Component {
 		return (
 			<div >
 				<Board cards = { this.state.cards } />
-			</div>	
+			</div>
 		);
 	}
 

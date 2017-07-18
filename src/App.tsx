@@ -3,9 +3,9 @@ import React, { Component } from "react";
 // import './App.css';
 
 import Clock from "./myModules/clock";
-import KanbanOnline from "./myModules/kanbanOnline";
 import GroceryList from "./myModules/groceryList";
 import Kanban from "./myModules/kanban/kanban";
+import KanbanOnline from "./myModules/kanbanOnline";
 import Toggle from "./myModules/toggle";
 
 import myKanbanData from "./myModules/kanban/data.json";
