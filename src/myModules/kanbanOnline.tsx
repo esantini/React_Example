@@ -19,9 +19,9 @@ class KanbanOnline extends React.Component {
 	};
 
 	private taskCallbacks: kanban.TaskCallbacks = {
-		toggle: undefined, // () => {},
-		delete: undefined, // () => {},
-		add: undefined, // () => {},
+		toggle: () => console.log("Cannot toggle online."),
+		delete: () => console.log("Cannot delete online."),
+		add: () => console.log("Cannot add online."),
 	};
 
 	constructor() {

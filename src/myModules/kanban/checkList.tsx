@@ -30,10 +30,10 @@ class CheckList extends Component {
 		);
 	}
 
-	private checkInputKeyPress(evt: any) {
+	private checkInputKeyPress(evt: React.KeyboardEvent<HTMLInputElement>) {
 		if (evt.key === "Enter") {
-			this.props.taskCallbacks.add(this.props.cardId, evt.target.value);
-			evt.target.value = "";
+			this.props.taskCallbacks.add(this.props.cardId, (evt.target as HTMLInputElement).value);
+			(evt.target as HTMLInputElement).value = "";
 		}
 	}
 }

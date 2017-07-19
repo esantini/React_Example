@@ -20,9 +20,9 @@ declare namespace kanban {
 		done: boolean
 	}
 	interface TaskCallbacks {
-		toggle: any,
-		delete: any,
-		add: any
+		toggle: Function,
+		delete: Function,
+		add: Function
 	}
 	interface CheckList {
 		cardId: number,

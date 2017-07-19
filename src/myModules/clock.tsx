@@ -9,7 +9,7 @@ class Clock extends React.Component {
 	/** Id of the interval to clear it when the clock is unmounted. */
 		// If I set this type to `NodeJS.Timer`, it complains it should be `number`...
 		// ... then if I set it to `number` it complains that it should be `NodeJS.Timer`.
-	private timerId: any;
+	private timerId: number | NodeJS.Timer;
 
 	constructor(props: {}) {
 		super(props);
@@ -24,7 +24,7 @@ class Clock extends React.Component {
 	}
 
 	public componentWillUnmount() {
-		clearInterval(this.timerId);
+		clearInterval(this.timerId as number);
 	}
 
 	public render() {
