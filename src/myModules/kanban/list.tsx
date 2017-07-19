@@ -8,6 +8,7 @@ class List extends React.Component {
 	public static propTypes = {
 		title: PropTypes.string.isRequired,
 		cards: PropTypes.arrayOf(PropTypes.object),
+		taskCallbacks: PropTypes.object,
 	};
 
 	public props: kanban.List;
@@ -19,9 +20,10 @@ class List extends React.Component {
 					<Card id={ card.id }
 						key={ card.id }
 						title={ card.title }
-						description = {card.description }
+						description = { card.description }
 						color={card.color}
-						tasks={ card.tasks } />
+						tasks={ card.tasks }
+						taskCallbacks={ this.props.taskCallbacks } />
 					);
 			});
 

@@ -29,6 +29,7 @@ class Card extends React.Component {
 		description: PropTypes.string,
 		color: PropTypes.string,
 		tasks: PropTypes.arrayOf(PropTypes.object),
+		taskCallbacks: PropTypes.object,
 	};
 
 	public props: kanban.Card;
@@ -51,7 +52,10 @@ class Card extends React.Component {
 			cardDetails = (
 				<div className="card__details">
 					<span dangerouslySetInnerHTML={{__html: marked(this.props.description)}} />
-					<CheckList cardId={this.props.id} tasks={this.props.tasks} />
+					<CheckList
+						cardId = {this.props.id}
+						tasks = {this.props.tasks}
+						taskCallbacks = {this.props.taskCallbacks} />
 				</div>
 			);
 		}

@@ -18,6 +18,12 @@ class KanbanOnline extends React.Component {
 		cards: kanban.Card[],
 	};
 
+	private taskCallbacks: kanban.TaskCallbacks = {
+		toggle: undefined, // () => {},
+		delete: undefined, // () => {},
+		add: undefined, // () => {},
+	};
+
 	constructor() {
 		super(...arguments);
 		this.state = {
@@ -39,7 +45,7 @@ class KanbanOnline extends React.Component {
 	public render() {
 		return (
 			<div >
-				<Board cards = { this.state.cards } />
+				<Board cards = { this.state.cards } taskCallbacks= { this.taskCallbacks } />
 			</div>
 		);
 	}
