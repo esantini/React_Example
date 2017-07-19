@@ -3,7 +3,6 @@ import React, { Component } from "react";
 // import './App.css';
 
 import Clock from "./myModules/clock";
-import GroceryList from "./myModules/groceryList";
 import Kanban from "./myModules/kanban/kanban";
 import KanbanOnline from "./myModules/kanbanOnline";
 import Toggle from "./myModules/toggle";
@@ -36,7 +35,6 @@ class App extends Component {
 					<span id="light">Toggle turns me On/Off</span>
 				</div>
 
-				<GroceryList />
 			</div>
 		);
 	}
