@@ -35,6 +35,14 @@ module.exports = {
 				enforce: "pre",
 				test: /\.js$/,
 				loader: "source-map-loader"
+			},
+			{
+				test: /\.tsx?$/,
+				enforce: 'pre',
+				loader: 'tslint-loader',
+				options: { 
+					
+				}
 			}
 		],
 		loaders: [
@@ -46,5 +54,9 @@ module.exports = {
 	plugins: [
 		new WebpackNotifierPlugin({ alwaysNotify: false })
 	],
+	stats: {
+		warnings: true,
+		moduleTrace: false // Omit stack trace
+	},
 	watch: true
 }
