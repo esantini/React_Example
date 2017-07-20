@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import Clock from "./myModules/clock";
 import Kanban from "./myModules/kanban/kanban";
 import KanbanOnline from "./myModules/kanbanOnline";
+import ShoppingList from "./myModules/shoppingList/shoppingList";
 import Toggle from "./myModules/toggle";
 
 import myKanbanData from "./myModules/kanban/data.json";
@@ -18,6 +19,11 @@ class App extends Component {
 					<h2>Welcome to React</h2>
 				</div>
 
+				<h3>Animated Shopping List:</h3>
+				<ShoppingList />
+
+				<hr />
+				<h3>Kanban with data from json file & pseudo CRUD functionality.</h3>
 				<Kanban cards={ myKanbanData.cardsList } />
 
 				<div style={{ border: "1px solid black", margin: "20px", backgroundColor: "beige" }}>
