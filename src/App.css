@@ -122,5 +122,15 @@
 .example-enter.example-enter-active {
 	opacity: 1;
 	transform: translateX(0);
-	transition: 3.3s;
+	transition: 0.3s;
+}
+
+.example-exit {
+	opacity: 1;
+	transform: translateX(0px);
+}
+.example-exit.example-exit-active {
+	opacity: 0;
+	transform: translateX(250px);
+	transition: 0.3s;
 }
