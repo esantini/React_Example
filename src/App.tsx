@@ -29,7 +29,7 @@ class App extends Component {
 				<div style={{ border: "1px solid black", margin: "20px", backgroundColor: "beige" }}>
 					<h3>This gets the Kanban Data from a CORS requests.</h3>
 					<h4>CORS: Cross Origin Resource Sharing</h4>
-					<KanbanOnline />
+					{/* <KanbanOnline /> */}
 				</div>
 
 				<Welcome1 name="from App.tsx" />
