@@ -46,7 +46,7 @@ class ShoppingList extends React.Component {
 				<ReactTransitionGroup.CSSTransition
 						key={item.id}
 						classNames="example"
-						timeout={{ enter: 0, exit: 0 }} >
+						timeout={{ enter: 300, exit: 300 }} >
 
 					<div style={this.itemStyle}
 							onClick={this.handleRemove.bind(this, i)}>
