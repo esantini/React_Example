@@ -1,6 +1,7 @@
 var path = require('path'),
 	webpack = require('webpack'),
 	WebpackNotifierPlugin = require('webpack-notifier');
+	LiveReload = require("webpack-livereload-plugin");
 
 module.exports = {
 	entry: './src/index.tsx',
@@ -52,7 +53,8 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new WebpackNotifierPlugin({ alwaysNotify: false })
+		new WebpackNotifierPlugin({ alwaysNotify: false }),
+		new LiveReload()
 	],
 	stats: {
 		warnings: true,
