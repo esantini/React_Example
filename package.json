@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/prop-types": "^15.5.1",
     "immutability-helper": "^2.3.0",
     "marked": "^0.3.6",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-dnd": "^2.4.0",
+    "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^15.6.1",
     "react-transition-group": "^2.1.0",
     "whatwg-fetch": "^2.0.3"
@@ -17,7 +18,10 @@
     "@types/jest": "^20.0.3",
     "@types/marked": "0.0.28",
     "@types/node": "^8.0.14",
+    "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.37",
+    "@types/react-dnd": "^2.0.33",
+    "@types/react-dnd-html5-backend": "^2.1.8",
     "@types/react-dom": "^15.5.1",
     "@types/react-transition-group": "^2.0.2",
     "file-loader": "^0.11.2",
@@ -35,7 +39,7 @@
   "scripts": {
     "start": "npm run webpack",
     "build": "TODO-scripts build",
-    "webpack": "webpack --config config/webpack.config.js",
+    "webpack": "webpack --config config/webpack.config.js --watch",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}' --exclude 'src/**/*.d.ts'",
     "pretest": "npm run lint",
     "test": "jest"

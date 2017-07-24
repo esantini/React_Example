@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // import './App.css';
 
 import Clock from "./myModules/clock";
+import ShoppingCart from "./myModules/dragNDrop/container";
 import Kanban from "./myModules/kanban/kanban";
 import KanbanOnline from "./myModules/kanbanOnline";
 import ShoppingList from "./myModules/shoppingList/shoppingList";
@@ -19,6 +20,10 @@ class App extends Component {
 					<h2>Welcome to React</h2>
 				</div>
 
+				<h3>Drag N Drop list</h3>
+				<ShoppingCart />
+
+				<hr />
 				<h3>Animated Shopping List:</h3>
 				<ShoppingList />
 
