@@ -11,13 +11,58 @@ import Toggle from "./myModules/toggle";
 
 import myKanbanData from "./myModules/kanban/data.json";
 
+interface IState {
+	route: string;
+}
+
 class App extends Component {
+
+	public state: IState;
+
+	public constructor() {
+		super(...arguments);
+		this.state = {
+			route: window.location.hash.substr(1),
+		};
+	}
+
+	public componentDidMount() {
+		window.addEventListener("hashchange", () => {
+			this.setState({
+				route: window.location.hash.substr(1),
+			});
+		});
+	}
+
 	public render() {
+
+		let Child;
+		switch (this.state.route) {
+			case "/kanban": {
+				Child = <Kanban cards={ myKanbanData.cardsList } />;
+				break;
+			}
+			case "/list": Child = <ShoppingList />; break;
+			default: Child = <ShoppingCart />;
+		}
+
 		return (
 			<div className="App">
 				<div className="App-header">
 					{/*<img src={logo} className="App-logo" alt="logo" />*/}
 					<h2>Welcome to React</h2>
+				</div>
+
+				<div className="routedStuff" >
+					<h3>The content of this div depends on the URL:</h3>
+					<menu>
+						<ul style={{margin: "0", padding: "0" }}>
+							<li><a href="#/shoppingCart">Shopping Cart</a></li>
+							<li><a href="#/kanban">Kanban</a></li>
+							<li><a href="#/list">Shopping List</a></li>
+						</ul>
+					</menu>
+					{Child}
 				</div>
 
 				<h3>Drag N Drop list</h3>
