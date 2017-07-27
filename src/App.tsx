@@ -13,6 +13,7 @@ import Kanban from "./myModules/kanban/kanban";
 import KanbanOnline from "./myModules/kanbanOnline";
 import ShoppingList from "./myModules/shoppingList/shoppingList";
 import Toggle from "./myModules/toggle";
+import ServerError from "./serverError";
 
 import myKanbanData from "./myModules/kanban/data.json";
 
@@ -64,6 +65,7 @@ class App extends Component {
 							<h3 style={{ color: "green" }}>// TODO Kanban needs "Cards" property. </h3>
 						)} />
 						<Route path="/list" component={ShoppingList} />
+						<Route path="/error" component={ServerError} />
 
 					</div>
 
