@@ -29,10 +29,10 @@ module.exports = {
 				test: /\.tsx?$/,
 				loader: "ts-loader"
 			},
-			// {
-			// 	test: /\.less$/,
-			// 	loader: 'less-loader'
-			// },
+			{
+				test: /\.less$/,
+				loader: 'less-loader'
+			},
 			{
 				enforce: "pre",
 				test: /\.js$/,
@@ -42,7 +42,7 @@ module.exports = {
 				test: /\.tsx?$/,
 				enforce: 'pre',
 				loader: 'tslint-loader',
-				options: { 
+				options: {
 					
 				}
 			}

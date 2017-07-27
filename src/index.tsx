@@ -5,7 +5,7 @@ import "file-loader?name=[name].[ext]!../public/favicon.ico";
 import "file-loader?name=[name].[ext]!../public/index.html";
 import "file-loader?name=[name].[ext]!../public/manifest.json";
 
-import "file-loader?name=[name].[ext]!./style.css";
+import "file-loader?name=[name].css!./style.less";
 
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
