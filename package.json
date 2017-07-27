@@ -30,6 +30,7 @@
     "@types/react-transition-group": "^2.0.2",
     "file-loader": "^0.11.2",
     "jest": "^20.0.4",
+    "live-server": "^1.2.0",
     "source-map-loader": "^0.2.1",
     "ts-jest": "^20.0.7",
     "ts-loader": "^2.3.0",
@@ -37,13 +38,12 @@
     "tslint-loader": "^3.5.3",
     "typescript": "^2.4.1",
     "webpack": "3.1.0",
-    "webpack-livereload-plugin": "^0.11.0",
     "webpack-notifier": "^1.5.0"
   },
   "scripts": {
     "start": "npm run webpack",
     "build": "TODO-scripts build",
-    "webpack": "webpack --config config/webpack.config.js --watch",
+    "webpack": "webpack --config webpack.config.js --watch",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}' --exclude 'src/**/*.d.ts'",
     "pretest": "npm run lint",
     "test": "jest"
