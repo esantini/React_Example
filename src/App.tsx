@@ -62,7 +62,7 @@ class App extends Component {
 
 						<Route path="/shoppingCart" component={ShoppingCart} />
 						<Route path="/kanban" render={() => (
-							<h3 style={{ color: "green" }}>// TODO Kanban needs "Cards" property. </h3>
+							<Kanban cards={ myKanbanData.cardsList } />
 						)} />
 						<Route path="/list" component={ShoppingList} />
 						<Route path="/error" component={ServerError} />
