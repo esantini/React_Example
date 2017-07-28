@@ -60,25 +60,22 @@ class App extends Component {
 							</ul>
 						</menu>
 
+						<Route path="/shoppingCart" render={() => ( <h3>Drag N Drop list</h3> )} />
 						<Route path="/shoppingCart" component={ShoppingCart} />
+
 						<Route path="/kanban" render={() => (
-							<Kanban cards={ myKanbanData.cardsList } />
+							<div>
+								<h3>Kanban with data from json file & pseudo CRUD functionality.</h3>
+								<Kanban cards={ myKanbanData.cardsList } />
+							</div>
 						)} />
+
+						<Route path="/list" render={() => ( <h3>Animated Shopping List:</h3> )} />
 						<Route path="/list" component={ShoppingList} />
+
 						<Route path="/error" component={ServerError} />
 
 					</div>
-
-					<h3>Drag N Drop list</h3>
-					<ShoppingCart />
-
-					<hr />
-					<h3>Animated Shopping List:</h3>
-					<ShoppingList />
-
-					<hr />
-					<h3>Kanban with data from json file & pseudo CRUD functionality.</h3>
-					<Kanban cards={ myKanbanData.cardsList } />
 
 					<div style={{ border: "1px solid black", margin: "20px", backgroundColor: "beige" }}>
 						<h3>This gets the Kanban Data from a CORS requests.</h3>
