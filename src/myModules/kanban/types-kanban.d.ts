@@ -1,9 +1,15 @@
 declare namespace kanban {
+	interface Board {
+		cards: Card[],
+		taskCallbacks: TaskCallbacks,
+		cardCallbacks: CardCallbacks,
+	}
 	interface List {
 		id: string,
 		title: string,
 		cards: kanban.Card[],
-		taskCallbacks: TaskCallbacks
+		taskCallbacks: TaskCallbacks,
+		cardCallbacks: CardCallbacks
 	}
 	interface Card {
 		id: number,
@@ -13,6 +19,9 @@ declare namespace kanban {
 		tasks: Task[],
 		status?: string,
 		taskCallbacks: TaskCallbacks,
+		cardCallbacks: CardCallbacks,
+		connectDragSource: Function,
+		connectDropTarget: Function
 	}
 	interface Task {
 		id: number,
@@ -23,6 +32,13 @@ declare namespace kanban {
 		toggle: Function,
 		delete: Function,
 		add: Function
+	}
+	interface CardCallbacks {
+		addCard: Function,
+		updateCard: Function,
+		updateStatus: Function,
+		updatePosition: Function,
+		persistCardDrag: Function,
 	}
 	interface CheckList {
 		cardId: number,

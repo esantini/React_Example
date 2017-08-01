@@ -1,42 +1,23 @@
 
-import * as History from "history";
-
 import React, { Component } from "react";
-import { Link, Route, Router } from "react-router-dom";
+import { Link, Route, BrowserRouter } from "react-router-dom";
 
 // import logo from './logo.svg'; // Use file-loader.
 // import './App.css';
 
 import Clock from "./myModules/clock";
 import ShoppingCart from "./myModules/dragNDrop/container";
-import Kanban from "./myModules/kanban/kanban";
-import KanbanOnline from "./myModules/kanbanOnline";
 import ShoppingList from "./myModules/shoppingList/shoppingList";
 import Toggle from "./myModules/toggle";
 import ServerError from "./serverError";
 
-import myKanbanData from "./myModules/kanban/data.json";
-
-interface IState {
-	route: string;
-}
-interface IProps {
-	children: any;
-}
+import Kanban from "./myModules/kanban/kanban";
 
 class App extends Component {
 
-	public state: IState;
-	public props: any;
-
-	// public componentWillReceiveProps(nextProps: any) {
-	// 	// will be true
-	// 	const locationChanged = nextProps.location !== this.props.location
-	// }
-
 	public render() {
 		return (
-			<Router history={History.createBrowserHistory()} >
+			<BrowserRouter>
 				<div className="App">
 					<div className="App-header">
 						{/*<img src={logo} className="App-logo" alt="logo" />*/}
@@ -64,23 +45,15 @@ class App extends Component {
 						<Route path="/shoppingCart" component={ShoppingCart} />
 
 						<Route path="/kanban" render={() => (
-							<div>
-								<h3>Kanban with data from json file & pseudo CRUD functionality.</h3>
-								<Kanban cards={ myKanbanData.cardsList } />
-							</div>
+							<h3>Kanban with data from json file(?) & pseudo CRUD functionality.</h3>
 						)} />
+						<Route path="/kanban" component={Kanban} />
 
 						<Route path="/list" render={() => ( <h3>Animated Shopping List:</h3> )} />
 						<Route path="/list" component={ShoppingList} />
 
 						<Route path="/error" component={ServerError} />
 
-					</div>
-
-					<div style={{ border: "1px solid black", margin: "20px", backgroundColor: "beige" }}>
-						<h3>This gets the Kanban Data from a CORS requests.</h3>
-						<h4>CORS: Cross Origin Resource Sharing</h4>
-						<KanbanOnline />
 					</div>
 
 					<Welcome1 name="from App.tsx" />
@@ -93,7 +66,7 @@ class App extends Component {
 					</div>
 
 				</div>
-			</Router>
+			</BrowserRouter>
 		);
 	}
 }

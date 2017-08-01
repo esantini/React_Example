@@ -1,7 +1,24 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import { DropTarget } from "react-dnd";
+
 import Card from "./card";
+
+const listTargetSpec = {
+	hover(props: kanban.List, monitor: any ) {
+		const draggedId = monitor.getItem().id;
+		props.cardCallbacks.updateStatus(draggedId, props.id);
+	},
+};
+
+function collect(
+		connect: __ReactDnd.DropTargetConnector,
+		monitor: __ReactDnd.DropTargetMonitor) {
+	return {
+		connectDropTarget: connect.dropTarget(),
+	};
+}
 
 class List extends React.Component {
 
@@ -9,31 +26,30 @@ class List extends React.Component {
 		title: PropTypes.string.isRequired,
 		cards: PropTypes.arrayOf(PropTypes.object),
 		taskCallbacks: PropTypes.object,
+		cardCallbacks: PropTypes.object,
 	};
 
-	public props: kanban.List;
+	public props: any; // kanban.List;
 
 	public render() {
+		const { connectDropTarget } = this.props;
 		const cards = this.props.cards.map(
-			(card) => {
+			(card: kanban.Card) => {
 				return (
-					<Card id={ card.id }
+					<Card {...card}
 						key={ card.id }
-						title={ card.title }
-						description = { card.description }
-						color={card.color}
-						tasks={ card.tasks }
-						taskCallbacks={ this.props.taskCallbacks } />
+						taskCallbacks={ this.props.taskCallbacks }
+						cardCallbacks={ this.props.cardCallbacks } />
 					);
 			});
 
-		return (
+		return connectDropTarget(
 			<div className="list">
 				<h1>{ this.props.title }</h1>
 				{ cards }
-			</div>
+			</div>,
 		);
 	}
 }
 
-export default List;
+export default DropTarget("card", listTargetSpec, collect)(List as any);
