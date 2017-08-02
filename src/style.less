@@ -38,8 +38,53 @@ body {
 	font-size: 1.1em;
 }
 
-/* Kanban: */
+.bankContainer {
+	margin: 10px;
+	font: 16px/1 sans-serif;
+	background-color:  #318435;
+	color: #fff;
+	text-align: center;
+	border: 2px solid gray;
 
+	@borderRadius: 15px;
+	border-radius: @borderRadius;
+
+	header {
+		padding: 15px;
+		text-align: center;
+		background-color: #000;
+		overflow: hidden;
+		border-top-left-radius: @borderRadius;
+		border-top-right-radius: @borderRadius;
+	}
+	h1{
+		font-size: 18px;
+	}
+	h2{
+		font-size: 16px;
+	}
+	.atm {
+		width: 200px;
+		height: 100px;
+		border-radius: 10px;
+		background-color: #000;
+		text-align: center;
+		margin: 10px auto 0 auto;
+		padding: 20px;
+		
+		input{
+			font-size:25px;
+			width: 180px
+		}
+		button{
+			margin: 10px 3%;
+			padding: 10px;
+			width: 40%;
+		}
+	}
+}
+
+/* Kanban: */
 .kanban {
 	text-align: left;
 	white-space: nowrap;
