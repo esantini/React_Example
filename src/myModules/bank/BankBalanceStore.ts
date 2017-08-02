@@ -22,12 +22,12 @@ class BankBalanceStore extends ReduceStore<number, IAction> {
 				return 0;
 
 			case constants.DEPOSITED_INTO_ACCOUNT:
-				// TODO: Why is action.ammount NaN when I input nothing or a string?
+				// TODO: Why is action.ammount NaN when I input a string?
 				if (Number.isNaN(action.ammount) ) { throw Error("Ammount is required"); }
 				return state + action.ammount;
 
 			case constants.WITHDREW_FROM_ACCOUNT:
-				// TODO: Why is action.ammount NaN when I input nothing or a string?
+				// TODO: Why is action.ammount NaN when I input a string?
 				if (Number.isNaN(action.ammount) ) { throw Error("Ammount is required"); }
 				return state - action.ammount;
 
