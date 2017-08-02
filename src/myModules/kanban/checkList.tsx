@@ -13,7 +13,7 @@ class CheckList extends Component {
 					} />
 
 				{task.name}
-				<a href="#" className="checklist__task--remove"
+				<a className="checklist__task--remove"
 					onClick={
 						this.props.taskCallbacks.delete.bind(null, this.props.cardId, task.id, taskIndex)
 					}/>
