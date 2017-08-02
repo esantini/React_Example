@@ -119,14 +119,15 @@ class Card extends React.Component {
 						onClick={ this.toggleDetails.bind(this) }>
 					{this.props.title}
 				</div>
-				{/* <ReactTransitionGroup.TransitionGroup>
+				<ReactTransitionGroup.TransitionGroup>
 					<ReactTransitionGroup.CSSTransition
 							key={this.props.id}
 							classNames="toggle"
-							timeout={{ enter: 300, exit: 300 }}> */}
-						{ cardDetails }
-					{/* </ReactTransitionGroup.CSSTransition>
-				</ReactTransitionGroup.TransitionGroup> */}
+							timeout={{ enter: 300, exit: 300 }}>
+
+						<div>{ cardDetails }</div>
+					</ReactTransitionGroup.CSSTransition>
+				</ReactTransitionGroup.TransitionGroup>
 			</div>,
 		));
 	}
