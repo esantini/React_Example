@@ -1,4 +1,4 @@
-import { EventEmitter, EventSubscription } from "fbemitter";
+import { EventEmitter } from "fbemitter";
 import AppDispatcher from "../../AppDispatcher";
 import constants from "./constants";
 
