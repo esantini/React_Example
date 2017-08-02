@@ -10,8 +10,9 @@ import ShoppingCart from "./myModules/dragNDrop/container";
 import ShoppingList from "./myModules/shoppingList/shoppingList";
 import Toggle from "./myModules/toggle";
 import ServerError from "./serverError";
-
 import Kanban from "./myModules/kanban/kanban";
+
+import Bank from "./myModules/bank/BankAppComponent";
 
 class App extends Component {
 
@@ -28,6 +29,8 @@ class App extends Component {
 						)} />
 
 					</div>
+
+					<Bank />
 
 					<div className="routedStuff" >
 						<h3>The content of this div depends on the URL:</h3>
