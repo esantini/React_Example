@@ -1,43 +1,43 @@
-import { EventEmitter } from "fbemitter";
+import { Store } from "flux/utils";
+
 import AppDispatcher from "../../AppDispatcher";
 import constants from "./constants";
 
-const CHANGE_EVENT = "change";
-const emitter = new EventEmitter();
 let balance = 0;
 
 interface IAction {
 	type: string;
-	ammount?: number;
+	ammount: number;
 }
 
-const BankBalanceStore = {
+class BankBalanceStore extends Store<{}> {
 
-	getState() {
+	public getState() {
 		return balance;
-	},
+	}
 
-	addListener: (callback: (data?: any) => void) => {
-		return emitter.addListener(CHANGE_EVENT, callback);
-	},
-
-	dispatchToken: AppDispatcher.register((action: IAction) => {
+	// dispatchToken: AppDispatcher.register((action: IAction) => {
+	protected __onDispatch(action: IAction) {
 		switch (action.type) {
 			case constants.CREATED_ACCOUNT:
 				balance = 0;
-				emitter.emit(CHANGE_EVENT);
+				this.__emitChange();
 				break;
 			case constants.DEPOSITED_INTO_ACCOUNT:
-				balance = balance + action.ammount!;
-				emitter.emit(CHANGE_EVENT);
+				// TODO: Why is action.ammount NaN when I input nothing or a string?
+				if (Number.isNaN(action.ammount) ) { throw Error("Ammount is required"); }
+				balance = balance + action.ammount;
+				this.__emitChange();
 				break;
 			case constants.WITHDREW_FROM_ACCOUNT:
+				// TODO: Why is action.ammount NaN when I input nothing or a string?
+				if (Number.isNaN(action.ammount) ) { throw Error("Ammount is required"); }
 				balance = balance - action.ammount!;
-				emitter.emit(CHANGE_EVENT);
+				this.__emitChange();
 				break;
 		}
-	}),
+	}
 
-};
+}
 
-export default BankBalanceStore;
+export default new BankBalanceStore(AppDispatcher);
