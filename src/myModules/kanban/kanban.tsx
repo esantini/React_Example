@@ -19,7 +19,13 @@ const API_HEADERS = {
 	"Authorization": "eSantiniWebDevelopment",
 };
 
-class Kanban extends React.Component<{ cards?: kanban.Card[] }, { cards: kanban.Card[] }> {
+interface IKanban {
+	cards: kanban.Card[];
+	match: { url: string };
+}
+
+class Kanban extends React.Component
+		<IKanban, { cards: kanban.Card[] }> {
 
 	public static propTypes = {
 		cards: PropTypes.arrayOf(PropTypes.object),
@@ -33,31 +39,55 @@ class Kanban extends React.Component<{ cards?: kanban.Card[] }, { cards: kanban.
 			cards: [],
 		};
 
+		/* Card Callbacks */
+		this.addCard = this.addCard.bind(this);
+		this.updateCard = this.updateCard.bind(this);
 		this.updateCardStatus = throttle(this.updateCardStatus.bind(this));
 		this.updateCardPosition = throttle(this.updateCardPosition.bind(this), 500);
+		this.persistCardDrag = this.persistCardDrag.bind(this);
+
+		/* Task Callbacks */
+		this.toggleTask = this.toggleTask.bind(this);
+		this.deleteTask = this.deleteTask.bind(this);
+		this.addTask = this.addTask.bind(this);
 	}
 
 	public render() {
-		const kanbanBoard = <Board
+
+		const cardCallbacks =
+				{
+					addCard: this.addCard,
+					updateCard: this.updateCard,
+					updateStatus: this.updateCardStatus,
+					updatePosition: this.updateCardPosition,
+					persistCardDrag: this.persistCardDrag,
+				};
+
+		const kanbanBoard =
+		<Board
 			cards= {this.state.cards}
 			taskCallbacks= {
 				{
-					toggle: this.toggleTask.bind(this),
-					delete: this.deleteTask.bind(this),
-					add: this.addTask.bind(this),
+					toggle: this.toggleTask,
+					delete: this.deleteTask,
+					add: this.addTask,
 				}
 			}
-			cardCallbacks= {
-				{
-					addCard: this.addCard.bind(this),
-					updateCard: this.updateCard.bind(this),
-					updateStatus: this.updateCardStatus,
-					updatePosition: this.updateCardPosition,
-					persistCardDrag: this.persistCardDrag.bind(this),
-				}
-			} />;
+			cardCallbacks= { cardCallbacks } />;
 
-		return ( kanbanBoard );
+		const myEdit = (props: any) => {
+			return <EditCard cards={ this.state.cards } {...props} />;
+		};
+		const myNewCard = (props: any) => {
+			return <EditCard cards={ this.state.cards } {...props} />;
+		};
+
+		return (
+			<div>
+				{ kanbanBoard }
+				<Route path={this.props.match.url + "/edit/:card_id"} render={myEdit} />
+				<Route path={this.props.match.url + "/new"} render={myNewCard} />
+			</div>);
 
 	}
 
