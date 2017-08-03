@@ -20,19 +20,20 @@ function collect(
 	};
 }
 
-class List extends React.Component {
+class List extends React.Component<kanban.List, {}> {
 
 	public static propTypes = {
+		id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
 		cards: PropTypes.arrayOf(PropTypes.object),
 		taskCallbacks: PropTypes.object,
 		cardCallbacks: PropTypes.object,
+		connectDropTarget: PropTypes.func.isRequired,
 	};
-
-	public props: any; // kanban.List;
 
 	public render() {
 		const { connectDropTarget } = this.props;
+		if (!connectDropTarget) { throw new Error("connectDropTarget is Required"); }
 		const cards = this.props.cards.map(
 			(card: kanban.Card) => {
 				return (
