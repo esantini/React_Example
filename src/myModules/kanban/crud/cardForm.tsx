@@ -9,9 +9,9 @@ interface IEvent extends Event {
 }
 
 interface IProps {
-	handleChange: (field: any, e: IEvent) => any;
-	handleClose: (e?: Event) => any;
-	handleSubmit: () => any;
+	handleChange: (field: any, e: IEvent) => void;
+	handleClose: (e?: Event) => void;
+	handleSubmit: (e: Event) => void;
 	draftCard: kanban.Card;
 	buttonLabel: string;
 }

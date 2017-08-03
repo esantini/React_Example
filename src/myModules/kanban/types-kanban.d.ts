@@ -2,14 +2,15 @@ declare namespace kanban {
 	interface Board {
 		cards: Card[],
 		taskCallbacks: TaskCallbacks,
-		cardCallbacks: CardCallbacks,
+		cardCallbacks: CardCallbacks
 	}
 	interface List {
 		id: string,
 		title: string,
 		cards: kanban.Card[],
 		taskCallbacks: TaskCallbacks,
-		cardCallbacks: CardCallbacks
+		cardCallbacks: CardCallbacks,
+		connectDropTarget?: __ReactDnd.ConnectDropTarget
 	}
 	interface Card {
 		id: number,
