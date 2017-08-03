@@ -1,15 +1,13 @@
 import React from "react";
 
-class Toggle extends React.Component {
-	public props: {
-		/**
-		 * Query for elements with the "target" string & apply the className: "toggleOn / toggleOff"
-		 */
-		target?: string,
-	};
-	public state: {
-		isToggleOn: boolean,
-	};
+interface IProps {
+	/**
+	 * Query for elements with the "target" string & apply the className: "toggleOn / toggleOff"
+	 */
+	target?: string;
+}
+
+class Toggle extends React.Component<IProps, { isToggleOn: boolean }> {
 
 	constructor(props: { target?: string }) {
 		super(props);

@@ -50,15 +50,13 @@ const collect = (connect: ReactDnD.DragSourceConnector, monitor: ReactDnD.DragSo
 	};
 };
 
-class Snack extends React.Component {
+class Snack extends React.Component<IProps, {}> {
 
 	public static propTypes = {
 		name: PropTypes.string.isRequired,
 		isDragging: PropTypes.bool.isRequired,
 		connectDragSource: PropTypes.func.isRequired,
 	};
-
-	public props: IProps;
 
 	public render() {
 

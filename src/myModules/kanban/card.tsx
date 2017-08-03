@@ -57,7 +57,7 @@ const collectDrop = (connect: __ReactDnd.DropTargetConnector, monitor: __ReactDn
 	};
 };
 
-class Card extends React.Component {
+class Card extends React.Component<kanban.Card, { showDetails: boolean }> {
 
 	public static propTypes = {
 		id: PropTypes.number,
@@ -69,12 +69,6 @@ class Card extends React.Component {
 		cardCallbacks: PropTypes.object,
 		// connectDragSource: PropTypes.func.isRequired,
 		// connectDropTarget: PropTypes.func.isRequired,
-	};
-
-	public props: kanban.Card;
-
-	public state: {
-		showDetails: boolean,
 	};
 
 	public constructor() {
@@ -114,7 +108,7 @@ class Card extends React.Component {
 		return connectDropTarget(connectDragSource(
 			<div className="card">
 				<div style={ sideColor } />
-				<div className="card__edit"><Link to={"/edit/" + this.props.id}>✎</Link></div>
+				<div className="card__edit"><Link to={"/kanban/edit/" + this.props.id}>✎</Link></div>
 				<div className={ this.state.showDetails ? "card__title card__title--is-open" : "card__title"}
 						onClick={ this.toggleDetails.bind(this) }>
 					{this.props.title}

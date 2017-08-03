@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-class CheckList extends Component {
-
-	public props: kanban.CheckList;
+class CheckList extends Component<kanban.CheckList, {}> {
 
 	public render() {
 		const tasks = this.props.tasks.map((task, taskIndex) => (

@@ -1,10 +1,6 @@
 import React from "react";
 
-class Clock extends React.Component {
-
-	public state: {
-		date: Date,
-	};
+class Clock extends React.Component<{}, { date: Date }> {
 
 	/** Id of the interval to clear it when the clock is unmounted. */
 		// If I set this type to `NodeJS.Timer`, it complains it should be `number`...

@@ -2,17 +2,17 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import CardForm from "./cardForm";
 
-class EditCard extends Component {
+interface IProps {
+	cards: kanban.Card[];
+	params: any;
+	cardCallbacks: kanban.CardCallbacks;
+	history: History;
+}
+
+class EditCard extends Component<IProps> {
 
 	public static propTypes = {
 		cardCallbacks: PropTypes.object,
-	};
-
-	public props: {
-		cards: kanban.Card[],
-		params: any,
-		cardCallbacks: kanban.CardCallbacks,
-		history: History,
 	};
 
 	public state: kanban.Card;

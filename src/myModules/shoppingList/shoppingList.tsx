@@ -2,16 +2,16 @@ import React from "react";
 import ReactTransitionGroup from "react-transition-group";
 
 interface Item {
-		id: number;
-		name: string;
-	}
+	id: number;
+	name: string;
+}
 
-class ShoppingList extends React.Component {
+interface IState {
+	items: Item[];
+	newItem?: string;
+}
 
-	public state: {
-		items: Item[];
-		newItem?: string;
-	};
+class ShoppingList extends React.Component<{}, IState> {
 
 	private inputStyle: React.CSSProperties = {
 		padding: "5px",

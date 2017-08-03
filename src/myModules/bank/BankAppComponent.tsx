@@ -3,10 +3,11 @@ import BankBalanceStore from "./BankBalanceStore";
 import BankActions from "./BankActions";
 import { EventSubscription } from "../../../node_modules/@types/fbemitter/index";
 
-class BankApp extends React.Component {
+class BankApp extends React.Component<{}, { balance: number }> {
 
-	public state: {
-		balance: number;
+	public refs: {
+		[key: string]: React.ReactInstance;
+		ammount: React.ReactInstance & { value: number };
 	};
 
 	private storeSubscription: EventSubscription;

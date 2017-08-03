@@ -3,20 +3,27 @@ import React from "react";
 
 import CardForm from "./cardForm";
 
-class NewCard extends React.Component {
+interface IProps {
+	cardCallbacks: {
+		addCard( card: kanban.Card ): void;
+	};
+	history: History;
+}
 
+class NewCard extends React.Component<IProps, kanban.Card> {
+
+	constructor() {
+		super(...arguments);
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleClose = this.handleClose.bind(this);
+	}
+
+	// tslint:disable:member-ordering
 	public static propTypes = {
 		cardCallbacks: PropTypes.object,
 	};
-
-	public props: {
-		cardCallbacks: {
-			addCard( card: kanban.Card ): void,
-		},
-		history: History,
-	};
-
-	public state: kanban.Card;
 
 	public componentWillMount() {
 		this.setState({
@@ -33,14 +40,14 @@ class NewCard extends React.Component {
 		return (
 			<CardForm draftCard={this.state}
 					buttonLabel="Crate Card"
-					handleChange={this.handleChange.bind(this)}
-					handleSubmit={this.handleSubmit.bind(this)}
-					handleClose={this.handleClose.bind(this)} />
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+					handleClose={this.handleClose} />
 		);
 	}
 
 	protected handleChange(field: string, value: any) {
-		this.setState({[field]: value } );
+		this.setState( { [field]: value } as any );
 	}
 
 	protected handleSubmit(e: Event) {

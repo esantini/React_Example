@@ -33,18 +33,18 @@ const collect = (connect: ReactDnD.DropTargetConnector, monitor: ReactDnD.DropTa
 	};
 };
 
-class ShoppingCart extends React.Component {
+interface IProps {
+	canDrop: boolean;
+	isOver: boolean;
+	connectDropTarget: ReactDnD.ConnectDropTarget;
+}
+
+class ShoppingCart extends React.Component<IProps, {}> {
 
 	public static propTypes = {
 		connectDropTarget: PropTypes.func.isRequired,
 		isOver: PropTypes.bool.isRequired,
 		canDrop: PropTypes.bool.isRequired,
-	};
-
-	public props: {
-		canDrop: boolean,
-		isOver: boolean,
-		connectDropTarget: ReactDnD.ConnectDropTarget,
 	};
 
 	public render() {

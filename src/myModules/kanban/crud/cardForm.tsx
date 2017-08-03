@@ -8,7 +8,15 @@ interface IEvent extends Event {
 	target: ITarget;
 }
 
-class CardForm extends React.Component {
+interface IProps {
+	handleChange: (field: any, e: IEvent) => any;
+	handleClose: (e?: Event) => any;
+	handleSubmit: () => any;
+	draftCard: kanban.Card;
+	buttonLabel: string;
+}
+
+class CardForm extends React.Component<IProps, {}> {
 
 	public static propTypes = {
 		buttonLabel: PropTypes.string.isRequired,
@@ -21,14 +29,6 @@ class CardForm extends React.Component {
 		handleChange: PropTypes.func.isRequired,
 		handleSubmit: PropTypes.func.isRequired,
 		handleClose: PropTypes.func.isRequired,
-	};
-
-	public props: {
-		handleChange: (field: any, e: IEvent) => any;
-		handleClose: (e?: Event) => any;
-		handleSubmit: () => any;
-		draftCard: kanban.Card;
-		buttonLabel: string;
 	};
 
 	public render() {

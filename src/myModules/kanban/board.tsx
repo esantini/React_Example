@@ -6,14 +6,12 @@ import HTML5Backend from "react-dnd-html5-backend";
 
 import List from "./list";
 
-class Board extends React.Component {
+class Board extends React.Component<kanban.Board, {}> {
 
 	public static propTypes = {
 		cards: PropTypes.arrayOf(PropTypes.object),
 		taskCallbacks: PropTypes.object,
 	};
-
-	public props: kanban.Board;
 
 	public render() {
 		if (!this.props.cards) {

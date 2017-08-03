@@ -19,16 +19,13 @@ const API_HEADERS = {
 	"Authorization": "eSantiniWebDevelopment",
 };
 
-class Kanban extends React.Component {
+class Kanban extends React.Component<{ cards?: kanban.Card[] }, { cards: kanban.Card[] }> {
 
 	public static propTypes = {
 		cards: PropTypes.arrayOf(PropTypes.object),
 		taskCallbacks: PropTypes.object,
 		cardCallbacks: PropTypes.object,
 	};
-
-	public props: { cards?: kanban.Card[] };
-	public state: { cards: kanban.Card[] };
 
 	constructor() {
 		super(...arguments);
