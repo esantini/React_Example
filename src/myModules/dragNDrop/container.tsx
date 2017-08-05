@@ -1,8 +1,5 @@
 import React from "react";
 
-import * as ReactDnD from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
-
 import ShoppingCart from "./shoppingCart";
 import Snack from "./snack";
 
@@ -21,4 +18,6 @@ class Container extends React.Component {
 	}
 }
 
-export default ReactDnD.DragDropContext(HTML5Backend)(Container);
+// For the Drag and Drop:
+import { getHTML5Context } from "../utils";
+export default getHTML5Context()(Container) as __ReactDnd.ContextComponentClass<kanban.Board>;

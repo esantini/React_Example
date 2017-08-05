@@ -1,9 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import * as ReactDnD from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
-
 import List from "./list";
 
 class Board extends React.Component<kanban.Board, {}> {
@@ -42,5 +39,6 @@ class Board extends React.Component<kanban.Board, {}> {
 
 }
 
-import { ContextComponentClass } from "react-dnd";
-export default ReactDnD.DragDropContext(HTML5Backend)(Board) as ContextComponentClass<kanban.Board>;
+// For the Drag and Drop:
+import { getHTML5Context } from "../utils";
+export default getHTML5Context()(Board) as __ReactDnd.ContextComponentClass<kanban.Board>;

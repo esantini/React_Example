@@ -1,3 +1,22 @@
+import * as ReactDnD from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
+
+let dndContext:
+		<P>(
+			componentClass: React.ComponentClass<P> | React.StatelessComponent<P>,
+		) => ReactDnD.ContextComponentClass<P>;
+/**
+ * Centralized single DnDContext with HTML5Backend.
+ * Because of Uncaught Error: Cannot have two HTML5 backends at the same time.
+ * 		at HTML5Backend.setup (HTML5Backend.js:88)
+ */
+export const getHTML5Context = () => {
+	if (!dndContext) {
+		dndContext = ReactDnD.DragDropContext(HTML5Backend);
+	}
+	return dndContext;
+};
+
 export const throttle = (func: () => any, wait?: number) => {
 
 	let context: any, args, prevArgs: IArguments, argsChanged, result: any;
