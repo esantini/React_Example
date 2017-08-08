@@ -1,13 +1,20 @@
 import React from "react";
+
 import BankBalanceStore from "./BankBalanceStore";
 import BankActions from "./BankActions";
 import { EventSubscription } from "../../../node_modules/@types/fbemitter/index";
 
-class BankApp extends React.Component<{}, { balance: number }> {
+interface IState { balance: number; }
+
+class BankApp extends React.Component<{}, IState> {
+
+	public static getStores = () => ([BankBalanceStore]);
+
+	public static calculateState = (prevState: IState) => ({ balance: BankBalanceStore.getState() });
 
 	public refs: {
 		[key: string]: React.ReactInstance;
-		ammount: React.ReactInstance & { value: number };
+		ammount: React.ReactInstance & { value: string };
 	};
 
 	private storeSubscription: EventSubscription;
@@ -15,9 +22,6 @@ class BankApp extends React.Component<{}, { balance: number }> {
 	constructor() {
 		super(...arguments);
 		BankActions.createAccount();
-		this.state = {
-			balance: BankBalanceStore.getState(),
-		};
 	}
 
 	public render() {
@@ -35,22 +39,14 @@ class BankApp extends React.Component<{}, { balance: number }> {
 		);
 	}
 
-	public componentDidMount() {
-		this.storeSubscription = BankBalanceStore.addListener(
-			() => this.handleStoreChange(),
-		);
-	}
-
-	public componentWillUnmount() {
-		this.storeSubscription.remove();
-	}
-
 	private deposit() {
 		BankActions.depositIntoAccount( Number( (this.refs.ammount as any).value ));
+		this.refs.ammount.value = "";
 	}
 
 	private withdraw() {
 		BankActions.withdrawFromAccount( Number( (this.refs.ammount as any).value ));
+		this.refs.ammount.value = "";
 	}
 
 	private handleStoreChange() {
@@ -58,4 +54,27 @@ class BankApp extends React.Component<{}, { balance: number }> {
 	}
 }
 
-export default BankApp;
+/* Note of caution (from the book): to use the Flux Util’s higher order function, the container component cannot
+ * access any props. This is both for performance reasons, and to ensure that containers are reusable and that
+ * props do not have to be threaded throughout a component tree
+*/
+import { Container } from "flux/utils";
+const AppContainer = Container.create(convert(BankApp));
+
+export default AppContainer;
+
+/**
+ * Because if I don't: Uncaught TypeError: Class constructor BankApp cannot be invoked without 'new'
+ * 		at PureComponent.ContainerClass (FluxContainer.js:129)
+ * Solution from: https://github.com/facebook/flux/issues/351#issuecomment-243175376
+ */
+function convert(containerClass: any) {
+	const tmp = containerClass;
+	containerClass = (...args: any[]) => {
+		return new tmp(...args);
+	};
+	containerClass.getStores = tmp.getStores;
+	containerClass.prototype = tmp.prototype;
+	containerClass.calculateState = tmp.calculateState;
+	return containerClass;
+}
