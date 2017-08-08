@@ -48,10 +48,6 @@ class BankApp extends React.Component<{}, IState> {
 		BankActions.withdrawFromAccount( Number( (this.refs.ammount as any).value ));
 		this.refs.ammount.value = "";
 	}
-
-	private handleStoreChange() {
-		this.setState( { balance: BankBalanceStore.getState() } );
-	}
 }
 
 /* Note of caution (from the book): to use the Flux Util’s higher order function, the container component cannot
