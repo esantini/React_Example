@@ -40,5 +40,5 @@ class Board extends React.Component<kanban.Board, {}> {
 }
 
 // For the Drag and Drop:
-import { getHTML5Context } from "../utils";
+import { getHTML5Context } from "../../utils";
 export default getHTML5Context()(Board) as __ReactDnd.ContextComponentClass<kanban.Board>;
