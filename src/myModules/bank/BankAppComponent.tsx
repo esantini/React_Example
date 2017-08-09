@@ -1,16 +1,25 @@
 import React from "react";
 
-import BankBalanceStore from "./BankBalanceStore";
-import BankActions from "./BankActions";
+import BalanceStore from "./BankBalanceStore";
+import RewardsStore from "./RewardsStore";
+
+import Actions from "./BankActions";
+
 import { EventSubscription } from "../../../node_modules/@types/fbemitter/index";
 
-interface IState { balance: number; }
+interface IState {
+	balance: number;
+	rewardsTier: string;
+}
 
 class BankApp extends React.Component<{}, IState> {
 
-	public static getStores = () => ([BankBalanceStore]);
+	public static getStores = () => ([BalanceStore]);
 
-	public static calculateState = (prevState: IState) => ({ balance: BankBalanceStore.getState() });
+	public static calculateState = (prevState: IState) => ({
+		balance: BalanceStore.getState(),
+		rewardsTier: RewardsStore.getState(),
+	})
 
 	public refs: {
 		[key: string]: React.ReactInstance;
@@ -21,7 +30,7 @@ class BankApp extends React.Component<{}, IState> {
 
 	constructor() {
 		super(...arguments);
-		BankActions.createAccount();
+		Actions.createAccount();
 	}
 
 	public render() {
@@ -29,6 +38,9 @@ class BankApp extends React.Component<{}, IState> {
 			<div className="bankContainer">
 				<header>FluxTrust Bank</header>
 				<h1>Your balance is ${(this.state.balance).toFixed(2)}</h1>
+				<h2>Your Points Rewards Tier is
+					<span className="rewardTier"> {this.state.rewardsTier}</span>
+				</h2>
 				<div className="atm">
 					<input type="text" placeholder="Enter Ammount" ref="ammount" />
 					<br />
@@ -40,12 +52,12 @@ class BankApp extends React.Component<{}, IState> {
 	}
 
 	private deposit() {
-		BankActions.depositIntoAccount( Number( (this.refs.ammount as any).value ));
+		Actions.depositIntoAccount( Number( this.refs.ammount.value ));
 		this.refs.ammount.value = "";
 	}
 
 	private withdraw() {
-		BankActions.withdrawFromAccount( Number( (this.refs.ammount as any).value ));
+		Actions.withdrawFromAccount( Number( this.refs.ammount.value ));
 		this.refs.ammount.value = "";
 	}
 }
