@@ -30,8 +30,6 @@ class App extends Component {
 
 					</div>
 
-					<Bank />
-
 					<div className="routedStuff" >
 						<h3>The content of this div depends on the URL:</h3>
 
@@ -58,6 +56,8 @@ class App extends Component {
 						<Route path="/error" component={ServerError} />
 
 					</div>
+
+					<Bank />
 
 					<Welcome1 name="from App.tsx" />
 
