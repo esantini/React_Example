@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Route } from "react-router-dom";
 
-import Board from "./board";
-import EditCard from "./crud/editCard";
-import NewCard from "./crud/newCard";
-import { throttle } from "../../utils";
+import Board from "./components/board";
+import EditCard from "./components/crud/editCard";
+import NewCard from "./components/crud/newCard";
+import { throttle } from "../utils";
 
 const API_URL = "http://kanbanapi.pro-react.com";
 const API_HEADERS = {

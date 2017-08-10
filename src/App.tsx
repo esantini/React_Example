@@ -10,7 +10,7 @@ import ShoppingCart from "./myModules/dragNDrop/container";
 import ShoppingList from "./myModules/shoppingList/shoppingList";
 import Toggle from "./myModules/toggle";
 import ServerError from "./serverError";
-import Kanban from "./myModules/kanban/components/kanban";
+import Kanban from "./myModules/kanban/kanban";
 
 import Bank from "./myModules/bank/BankAppComponent";
 
