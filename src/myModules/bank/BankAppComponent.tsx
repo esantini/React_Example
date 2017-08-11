@@ -67,22 +67,7 @@ class BankApp extends React.Component<{}, IState> {
  * props do not have to be threaded throughout a component tree
 */
 import { Container } from "flux/utils";
-const AppContainer = Container.create(convert(BankApp));
+import { convert } from "../utils";
+const AppContainer = Container.create( convert(BankApp));
 
 export default AppContainer;
-
-/**
- * Because if I don't: Uncaught TypeError: Class constructor BankApp cannot be invoked without 'new'
- * 		at PureComponent.ContainerClass (FluxContainer.js:129)
- * Solution from: https://github.com/facebook/flux/issues/351#issuecomment-243175376
- */
-function convert(containerClass: any) {
-	const tmp = containerClass;
-	containerClass = (...args: any[]) => {
-		return new tmp(...args);
-	};
-	containerClass.getStores = tmp.getStores;
-	containerClass.prototype = tmp.prototype;
-	containerClass.calculateState = tmp.calculateState;
-	return containerClass;
-}
