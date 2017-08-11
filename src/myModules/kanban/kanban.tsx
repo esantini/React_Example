@@ -2,10 +2,15 @@ import update from "immutability-helper";
 import PropTypes from "prop-types";
 import React from "react";
 import { Route } from "react-router-dom";
+import { Container } from "flux/utils";
 
 import Board from "./components/board";
 import EditCard from "./components/crud/editCard";
 import NewCard from "./components/crud/newCard";
+
+import CardActionCreators from "./actions/CardActionCreators";
+import CardStore from "./stores/CardStore";
+
 import { throttle } from "../utils";
 
 const API_URL = "http://kanbanapi.pro-react.com";
@@ -32,6 +37,9 @@ class Kanban extends React.Component
 		taskCallbacks: PropTypes.object,
 		cardCallbacks: PropTypes.object,
 	};
+
+	public static getStores = () => ([CardStore]);
+	public static calculateState = (prevState: IKanban) => ({ cards: CardStore.getState() });
 
 	constructor() {
 		super(...arguments);
@@ -92,20 +100,13 @@ class Kanban extends React.Component
 	}
 
 	public componentDidMount() {
-		fetch(API_URL + "/cards", { headers: API_HEADERS })
-			.then((response) => response.json())
-			.then((responseData) => {
-				try{
-					this.setState({ cards: responseData });
-				} catch (e) {
-					console.error(e);
-				}
-			})
-			.catch((error) => {
-				console.log("Error fetching and parsing data", error);
-			});
+		CardActionCreators.fetchCards();
 	}
 
+	/**
+	 * Receives a card Id and a task name; creates a new task for a given card. In the
+	 * refactor, you will pass an entire Task object instead of just the task name.
+	 */
 	private addTask(cardId: number, taskName: string) {
 
 		// Keep a reference to the original state prior to the mutations
@@ -154,6 +155,10 @@ class Kanban extends React.Component
 			});
 	}
 
+	/**
+	 * Receives a card Id, a task id, and the task index; deletes the task. In the refactor,
+	 * you pass the entire card object instead of just the id.
+	 */
 	private deleteTask(cardId: number, taskId: number, taskIndex: number) {
 
 		// Keep a reference to the original state prior to the mutations
@@ -192,6 +197,10 @@ class Kanban extends React.Component
 			});
 	}
 
+	/**
+	 * Receives a card Id and a task name; creates a new task for a given card. In the
+	 * refactor, you will pass an entire Task object instead of just the task name.
+	 */
 	private toggleTask(cardId: number, taskId: number, taskIndex: number) {
 
 		const prevState = this.state;
@@ -241,6 +250,10 @@ class Kanban extends React.Component
 			});
 	}
 
+	/**
+	 * Receives the current card Id and the new status Id. Called during the card dragand-drop.
+	 * Updates the card status.
+	 */
 	private updateCardStatus(cardId: number, listId: string) {
 
 		// Find the index of the card
@@ -263,6 +276,11 @@ class Kanban extends React.Component
 
 	}
 
+	/**
+	 * Receives the current card id and the card id with which the current card will
+	 * switch positions. Called during the card drag-and-drop. Switches the positions
+	 * of the given cards.
+	 */
 	private updateCardPosition(cardId: number, afterId: number) {
 
 		// Only proceed if hovering over a different card
@@ -289,6 +307,11 @@ class Kanban extends React.Component
 
 	}
 
+	/**
+	 * Receives an object containing a given card’s ID and the new card status. Called
+	 * after a card’s drag-and-drop. Persists the new card’s position and status on the
+	 * server
+	 */
 	private persistCardDrag(cardId: number, status: string) {
 		// Find the index of the card
 		const cardIndex = this.state.cards.findIndex((c) => c.id === cardId);
@@ -320,6 +343,7 @@ class Kanban extends React.Component
 			});
 	}
 
+	/** Receives an object with card properties as parameters; creates a new card. */
 	private addCard(card: kanban.Card) {
 		// Keep a reference to the original state prior to the mutations
 		// in case we need to revert the optimistic changes in the UI
@@ -363,6 +387,11 @@ class Kanban extends React.Component
 			});
 	}
 
+	/**
+	 * Receives an object with the updated card properties; updates the properties
+	 * of the given card. In the refactor, it receives two properties: the original card
+	 * properties and the changed card properties.
+	 */
 	private updateCard(card: kanban.Card) {
 		// Keep a reference to the original state prior to the mutations
 		// in case we need to revert the optimistic changes in the UI
@@ -398,4 +427,5 @@ class Kanban extends React.Component
 	}
 }
 
-export default Kanban;
+import { convert } from "../utils";
+export default Container.create( convert(Kanban) );
