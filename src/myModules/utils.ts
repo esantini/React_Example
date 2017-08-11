@@ -41,3 +41,20 @@ export const throttle = (func: () => any, wait?: number) => {
 		return result;
 	};
 };
+
+/**
+ * To Create a Flux container you must: Container.create( convert( App ) );
+ * Because if I don't: Uncaught TypeError: Class constructor App cannot be invoked without 'new'
+ * 		at PureComponent.ContainerClass (FluxContainer.js:129)
+ * Solution from: https://github.com/facebook/flux/issues/351#issuecomment-243175376
+ */
+export const convert = (containerClass: any) => {
+	const tmp = containerClass;
+	containerClass = (...args: any[]) => {
+		return new tmp(...args);
+	};
+	containerClass.getStores = tmp.getStores;
+	containerClass.prototype = tmp.prototype;
+	containerClass.calculateState = tmp.calculateState;
+	return containerClass;
+};
