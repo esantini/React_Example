@@ -10,7 +10,7 @@ Most of the code examples come from the book: **Pro React** by **Cásio de Sousa
 
 To install with create-react-app with `typescript` input the command:
 
-	In cmd: `create-react-app app_name --scripts-version=react-scripts-ts`
+In cmd: `create-react-app app_name --scripts-version=react-scripts-ts`
 
 ### npm start
 To build the project with webpack.
