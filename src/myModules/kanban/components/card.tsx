@@ -5,6 +5,7 @@ import { DragSource, DropTarget } from "react-dnd";
 
 import ReactTransitionGroup from "react-transition-group";
 
+import constants from "../constants";
 import CheckList from "./checkList";
 
 import { Link } from "react-router-dom";
@@ -131,6 +132,6 @@ class Card extends React.Component<kanban.Card, { showDetails: boolean }> {
 	}
 }
 
-const dragHighOrderCard = DragSource("card", cardDragSpec, collectDrag)(Card as any);
-const dragDropHighOrderCard = DropTarget("card", cardDropSpec, collectDrop)(dragHighOrderCard);
+const dragHighOrderCard = DragSource(constants.CARD, cardDragSpec, collectDrag)(Card as any);
+const dragDropHighOrderCard = DropTarget(constants.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
 export default dragDropHighOrderCard;
