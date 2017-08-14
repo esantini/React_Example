@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import CardForm from "./cardForm";
+import CardActionCreators from "../../actions/CardActionCreators";
 
 interface IProps {
 	cardCallbacks: {
@@ -52,7 +53,7 @@ class NewCard extends React.Component<IProps, kanban.Card> {
 
 	protected handleSubmit(e: Event) {
 		e.preventDefault();
-		this.props.cardCallbacks.addCard(this.state);
+		CardActionCreators.addCard(this.state);
 		this.props.history.pushState(null, "/");
 	}
 

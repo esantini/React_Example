@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+
 import CardForm from "./cardForm";
+import CardStore from "../../stores/CardStore";
+import CardActionCreators from "../../actions/CardActionCreators";
 
 interface IProps {
 	cards: kanban.Card[];
@@ -15,13 +18,6 @@ class EditCard extends Component<IProps, kanban.Card> {
 		cardCallbacks: PropTypes.object,
 	};
 
-	constructor() {
-		super(...arguments);
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleClose = this.handleClose.bind(this);
-	}
-
 	public render() {
 		return (
 			<CardForm draftCard={this.state}
@@ -33,7 +29,8 @@ class EditCard extends Component<IProps, kanban.Card> {
 	}
 
 	public componentWillMount() {
-		const card = this.props.cards.find((c) => c.id === this.props.match.params.card_id);
+		// tslint:disable:radix
+		const card = CardStore.getCard(parseInt((this.props as any).params.card_id));
 		this.setState(Object.assign({}, card) as kanban.Card);
 	}
 
@@ -44,7 +41,10 @@ class EditCard extends Component<IProps, kanban.Card> {
 	private handleSubmit(e: Event) {
 		e.preventDefault();
 
-		this.props.cardCallbacks.updateCard(this.state);
+		CardActionCreators.updateCard(
+			CardStore.getCard(
+				parseInt( (this.props as any).params.card_id ) ),
+			this.state);
 		this.props.history.pushState(null, "/");
 	}
 

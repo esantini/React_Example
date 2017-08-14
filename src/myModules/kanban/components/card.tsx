@@ -9,6 +9,7 @@ import constants from "../constants";
 import CheckList from "./checkList";
 
 import { Link } from "react-router-dom";
+import CardActionCreators from "../actions/CardActionCreators";
 
 /**
  * This is why prop-types are useful even if you already have typescript or flow.
@@ -35,7 +36,7 @@ const cardDragSpec = {
 		};
 	},
 	endDrag(props: kanban.Card) {
-		props.cardCallbacks.persistCardDrag(props.id, props.status);
+		CardActionCreators.persistCardDrag(props);
 	},
 };
 
@@ -48,7 +49,9 @@ const collectDrag = (connect: any, monitor: any) => {
 const cardDropSpec = {
 	hover(props: kanban.Card, monitor: __ReactDnd.DropTargetMonitor) {
 		const draggedId = (monitor.getItem() as kanban.Card).id;
-		props.cardCallbacks.updatePosition(draggedId, props.id);
+		if (props.id !== draggedId){
+			CardActionCreators.UpdateCardPosition(draggedId, props.id);
+		}
 	},
 };
 
@@ -65,11 +68,10 @@ class Card extends React.Component<kanban.Card, { showDetails: boolean }> {
 		title: titlePropType,
 		description: PropTypes.string,
 		color: PropTypes.string,
-		tasks: PropTypes.arrayOf(PropTypes.object),
-		taskCallbacks: PropTypes.object,
-		cardCallbacks: PropTypes.object,
-		// connectDragSource: PropTypes.func.isRequired,
-		// connectDropTarget: PropTypes.func.isRequired,
+		tasks: PropTypes.array,
+		status: PropTypes.string,
+		connectDragSource: PropTypes.func.isRequired,
+		connectDropTarget: PropTypes.func.isRequired,
 	};
 
 	public constructor() {

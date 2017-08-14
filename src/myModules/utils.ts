@@ -17,11 +17,11 @@ export const getHTML5Context = () => {
 	return dndContext;
 };
 
-export const throttle = (func: () => any, wait?: number) => {
+export const throttle = (func: (...args: any[]) => any, wait?: number) => {
 
 	let context: any, args, prevArgs: IArguments, argsChanged, result: any;
 	let previous: number = 0;
-	return function(this: any) {
+	return function(this: any, ...args2: any[]) {
 		let now: number, remaining: number;
 		if (wait) {
 			now = Date.now();

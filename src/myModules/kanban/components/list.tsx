@@ -4,11 +4,13 @@ import React from "react";
 import { DropTarget } from "react-dnd";
 
 import Card from "./card";
+import constants from "../constants";
+import CardActionCreators from "../actions/CardActionCreators";
 
 const listTargetSpec = {
 	hover(props: kanban.List, monitor: any ) {
 		const draggedId = monitor.getItem().id;
-		props.cardCallbacks.updateStatus(draggedId, props.id);
+		CardActionCreators.updateCardStatus(draggedId, props.id);
 	},
 };
 
@@ -26,8 +28,6 @@ class List extends React.Component<kanban.List, {}> {
 		id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
 		cards: PropTypes.arrayOf(PropTypes.object),
-		taskCallbacks: PropTypes.object,
-		cardCallbacks: PropTypes.object,
 		connectDropTarget: PropTypes.func.isRequired,
 	};
 
@@ -36,13 +36,8 @@ class List extends React.Component<kanban.List, {}> {
 		if (!connectDropTarget) { throw new Error("connectDropTarget is Required"); }
 		const cards = this.props.cards.map(
 			(card: kanban.Card) => {
-				return (
-					<Card {...card}
-						key={ card.id }
-						taskCallbacks={ this.props.taskCallbacks }
-						cardCallbacks={ this.props.cardCallbacks } />
-					);
-			});
+				return <Card {...card} key={ card.id } /> ;
+		});
 
 		return connectDropTarget(
 			<div className="list">
@@ -53,4 +48,4 @@ class List extends React.Component<kanban.List, {}> {
 	}
 }
 
-export default DropTarget("card", listTargetSpec, collect)(List as any);
+export default DropTarget(constants.CARD, listTargetSpec, collect)(List);
