@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { Container } from "flux/utils";
 
 import CardForm from "./cardForm";
+import DraftStore from "../../stores/DraftStore";
+
 import CardActionCreators from "../../actions/CardActionCreators";
 
 interface IProps {
@@ -11,7 +14,16 @@ interface IProps {
 	history: History;
 }
 
-class NewCard extends React.Component<IProps, kanban.Card> {
+class NewCard extends React.Component<IProps, { draft: kanban.Card }> {
+
+	public static propTypes = {
+		cardCallbacks: PropTypes.object,
+	};
+
+	public static getStores = () => ([DraftStore]);
+	public static calculateState = (prevState: {draft: kanban.Card}) => ({
+		draft: DraftStore.getState(),
+	})
 
 	constructor() {
 		super(...arguments);
@@ -21,25 +33,9 @@ class NewCard extends React.Component<IProps, kanban.Card> {
 		this.handleClose = this.handleClose.bind(this);
 	}
 
-	// tslint:disable:member-ordering
-	public static propTypes = {
-		cardCallbacks: PropTypes.object,
-	};
-
-	public componentWillMount() {
-		this.setState({
-			id: Date.now(),
-			title: "",
-			description: "",
-			status: "todo",
-			color: "#c9c9c9",
-			tasks: [],
-		});
-	}
-
 	public render() {
 		return (
-			<CardForm draftCard={this.state}
+			<CardForm draftCard={this.state.draft}
 					buttonLabel="Crate Card"
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
@@ -47,13 +43,17 @@ class NewCard extends React.Component<IProps, kanban.Card> {
 		);
 	}
 
+	public componentDidMount() {
+		setTimeout(() => CardActionCreators.createDraft(), 0);
+	}
+
 	protected handleChange(field: string, value: any) {
-		this.setState( { [field]: value } as any );
+		CardActionCreators.updateDraft(field, value);
 	}
 
 	protected handleSubmit(e: Event) {
 		e.preventDefault();
-		CardActionCreators.addCard(this.state);
+		CardActionCreators.addCard(this.state.draft);
 		this.props.history.pushState(null, "/");
 	}
 
@@ -62,4 +62,5 @@ class NewCard extends React.Component<IProps, kanban.Card> {
 	}
 }
 
-export default NewCard;
+import { convert } from "../../../utils";
+export default Container.create( convert(NewCard) );

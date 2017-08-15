@@ -25,6 +25,13 @@ const CardActionCreator = {
 		});
 	},
 
+	toggleCardDetails(cardId: number) {
+		AppDispatcher.dispatch({
+			type: constants.TOGGLE_CARD_DETAILS,
+			payload: { cardId },
+		});
+	},
+
 	addCard(card: kanban.Card) {
 		AppDispatcher.dispatchAsync(KanbanAPI.addCard(card), {
 			request: constants.CREATE_CARD,
@@ -64,6 +71,21 @@ const CardActionCreator = {
 			failure: constants.PERSIST_CARD_DRAG_ERROR,
 		}, {cardProps});
 	},
+
+	createDraft(card?: kanban.Card) {
+		AppDispatcher.dispatch({
+			type: constants.CREATE_DRAFT,
+			payload: { card },
+		});
+	},
+
+	updateDraft(field: string, value: string) {
+		AppDispatcher.dispatch({
+			type: constants.UPDATE_DRAFT,
+			payload: { field, value },
+		});
+	},
+
 };
 
 export default CardActionCreator;

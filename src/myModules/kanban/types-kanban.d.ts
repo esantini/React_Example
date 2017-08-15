@@ -18,7 +18,9 @@ declare namespace kanban {
 		taskCallbacks: TaskCallbacks,
 		cardCallbacks: CardCallbacks,
 		connectDragSource: Function,
-		connectDropTarget: Function
+		connectDropTarget: Function,
+		isDragging: boolean,
+		showDetails: boolean
 	}
 	interface Task {
 		id: number,

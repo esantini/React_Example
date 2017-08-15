@@ -32,4 +32,9 @@ export default {
 	TOGGLE_TASK_SUCCESS: "toggle task success",
 	TOGGLE_TASK_ERROR: "toggle task error",
 
+	TOGGLE_CARD_DETAILS: "toggle card details",
+
+	CREATE_DRAFT: "create draft",
+	UPDATE_DRAFT: "update draft",
+
 };

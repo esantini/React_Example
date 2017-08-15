@@ -6,11 +6,11 @@ import constants from "../constants";
 
 interface IAction {
 	type: string;
-	payload: any;
-	// 	response: kanban.Card[] | kanban.Card;
-	// 	card: kanban.Card;
-	// 	draftCard: kanban.Card;
-	// };
+	payload: {
+		card: kanban.Card;
+		draftCard: kanban.Card;
+		[key: string]: any;
+	};
 }
 
 class CardStore extends ReduceStore< kanban.Card[] , any > {
@@ -45,6 +45,17 @@ class CardStore extends ReduceStore< kanban.Card[] , any > {
 			case constants.CREATE_CARD_ERROR:
 				cardIndex = this.getCardIndex( action.payload.card.id );
 				return update( this.getState(), { $splice: [[cardIndex, 1]]});
+
+			/*
+			 * Card Status Toggle
+			 */
+			case constants.TOGGLE_CARD_DETAILS:
+				cardIndex = this.getCardIndex(action.payload.cardId);
+				return update(this.getState(), {
+					[cardIndex]: {
+						showDetails: { $apply: (currentValue: boolean) => !currentValue },
+					},
+				});
 
 			/*
 			 * Card Update
@@ -117,7 +128,7 @@ class CardStore extends ReduceStore< kanban.Card[] , any > {
 							[taskIndex]: {
 								tasks: {
 									[taskIndex]: {
-										id: { $set: action.payload.response.id },
+										id: { $set: (action.payload.response as kanban.Card).id },
 									},
 								},
 							},

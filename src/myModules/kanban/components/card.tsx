@@ -74,18 +74,11 @@ class Card extends React.Component<kanban.Card, { showDetails: boolean }> {
 		connectDropTarget: PropTypes.func.isRequired,
 	};
 
-	public constructor() {
-		super(...arguments);
-		this.state = {
-			showDetails: false,
-		};
-	}
-
 	public render() {
-		const { connectDragSource, connectDropTarget } = this.props;
+		const { isDragging, connectDragSource, connectDropTarget } = this.props;
 
 		let cardDetails;
-		if (this.state.showDetails) {
+		if (this.props.showDetails !== false ) {
 			cardDetails = (
 				<div className="card__details">
 					<span dangerouslySetInnerHTML={{__html: marked(this.props.description)}} />
@@ -112,7 +105,7 @@ class Card extends React.Component<kanban.Card, { showDetails: boolean }> {
 			<div className="card">
 				<div style={ sideColor } />
 				<div className="card__edit"><Link to={"/kanban/edit/" + this.props.id}>✎</Link></div>
-				<div className={ this.state.showDetails ? "card__title card__title--is-open" : "card__title"}
+				<div className={ this.props.showDetails ? "card__title card__title--is-open" : "card__title"}
 						onClick={ this.toggleDetails.bind(this) }>
 					{this.props.title}
 				</div>
@@ -129,8 +122,8 @@ class Card extends React.Component<kanban.Card, { showDetails: boolean }> {
 		));
 	}
 
-	private toggleDetails() {
-		this.setState({ showDetails: !this.state.showDetails });
+	public toggleDetails() {
+		CardActionCreators.toggleCardDetails(this.props.id);
 	}
 }
 
