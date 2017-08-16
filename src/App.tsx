@@ -14,6 +14,8 @@ import Kanban from "./myModules/kanban/kanban";
 
 import Bank from "./myModules/bank/BankAppComponent";
 
+import Buckys from "./myModules/buckysRedux/index";
+
 class App extends Component {
 
 	public render() {
@@ -56,6 +58,8 @@ class App extends Component {
 						<Route path="/error" component={ServerError} />
 
 					</div>
+
+					<Buckys />
 
 					<Bank />
 
