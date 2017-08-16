@@ -7,7 +7,6 @@ class AppDispatcher extends Dispatcher<any> {
 	}
 
 	public dispatch(action = {}) {
-		console.log("Dispatched", action);
 		super.dispatch(action);
 	}
 
@@ -15,8 +14,6 @@ class AppDispatcher extends Dispatcher<any> {
 	 * Dispatches three actions for an async operation represented by promise.
 	 */
 	public dispatchAsync(promise: any, types: any, payload?: any) {
-		console.log("Async Dispatch:", arguments);
-
 		const { request, success, failure } = types;
 		this.dispatch({ type: request, payload: Object.assign({}, payload) });
 		promise.then(
