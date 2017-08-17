@@ -21,6 +21,8 @@ class KanbanBoardContainer extends React.Component<any, any> {
 	}
 
 	public render() {
+
+		/* BOOKS CODE NOT WORKING
 		// TODO the following results "undefined". Check book's intent here:
 		const kanbanBoard = this.props.children && React.cloneElement( this.props.children, {
 			cards: this.state.cards,
@@ -29,6 +31,9 @@ class KanbanBoardContainer extends React.Component<any, any> {
 			console.warn("kanbanBoard is undefined");
 		}
 		return <div> { kanbanBoard } </div>;
+		*/
+
+		return <div className="kanban"> <Board cards={this.state.cards} /> </div>;
 	}
 }
 
