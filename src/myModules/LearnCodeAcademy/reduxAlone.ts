@@ -1,10 +1,19 @@
-import { createStore, Action } from "redux";
+import { createStore, Action, combineReducers } from "redux";
 
 interface IAction extends Action {
 	payload: any;
 }
 
-const reducer = (state: number, action: IAction): number => {
+// Each reducer in it's own file.
+const userReducer = (state: { [whatever: string]: any } = {}, action: IAction) => {
+	return state;
+};
+
+const tweetsReducer = (state: any[] = [], action: IAction) => {
+	return state;
+};
+
+const calcReducer = (state: number = 0, action: IAction): number => {
 	if (action.type === "INCREMENT") {
 		return state + action.payload;
 	}
@@ -14,10 +23,16 @@ const reducer = (state: number, action: IAction): number => {
 	return state;
 };
 
-const store = createStore(reducer, 0);
+const reducers = combineReducers({
+	user: userReducer,
+	tweets: tweetsReducer,
+	calc: calcReducer,
+});
+
+const store = createStore(reducers);
 
 store.subscribe(() => {
-	console.log("Store updated: ", store.getState()); // 1, 3, 7, 5, 4
+	console.log("Store updated: ", store.getState());
 });
 
 store.dispatch({type: "INCREMENT", payload: 1 }); // 1
