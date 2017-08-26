@@ -1,5 +1,4 @@
 import React from "react";
-import RactDOM from "react-dom";
 import { createStore, Reducer } from "redux";
 import { Provider } from "react-redux";
 
