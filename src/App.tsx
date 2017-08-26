@@ -18,6 +18,8 @@ import Buckys from "./myModules/buckysRedux/index";
 
 import MobXTimer from "./myModules/MobX/MobXample";
 
+import "./myModules/LearnCodeAcademy/reduxAlone"; // console logs.
+
 class App extends Component {
 
 	public render() {
