@@ -16,6 +16,8 @@ import Bank from "./myModules/bank/BankAppComponent";
 
 import Buckys from "./myModules/buckysRedux/index";
 
+import MobXTimer from "./myModules/MobX/MobXample";
+
 class App extends Component {
 
 	public render() {
@@ -31,6 +33,8 @@ class App extends Component {
 						)} />
 
 					</div>
+
+					{ MobXTimer }
 
 					<div className="routedStuff" >
 						<h3>The content of this div depends on the URL:</h3>
