@@ -6,6 +6,22 @@ interface IAction extends Action {
 
 // Each reducer in it's own file.
 const userReducer = (state: { [whatever: string]: any } = {}, action: IAction) => {
+	switch (action.type) {
+		case "CHANGE_NAME":
+			// Don't mutate the state
+			// state.name = action.payload;
+
+			// Instead create a new state:
+			state = {...state, name: action.payload };
+			break;
+		case "CHANGE_AGE":
+			// Don't mutate the state
+			// state.age = action.payload;
+
+			// Instead create a new state:
+			state = {...state, age: action.payload};
+			break;
+	}
 	return state;
 };
 
@@ -34,6 +50,10 @@ const store = createStore(reducers);
 store.subscribe(() => {
 	console.log("Store updated: ", store.getState());
 });
+
+store.dispatch({type: "CHANGE_NAME", payload: "Esteban" });
+store.dispatch({type: "CHANGE_AGE", payload: 31 });
+store.dispatch({type: "CHANGE_AGE", payload: 32 });
 
 store.dispatch({type: "INCREMENT", payload: 1 }); // 1
 store.dispatch({type: "INCREMENT", payload: 2 }); // 3
